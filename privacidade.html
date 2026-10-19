@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111111">
+<meta name="description" content="Saiba como o CHAVE gera e analisa senhas no navegador e como esta versão trata publicidade e dados.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Política de Privacidade — CHAVE">
+<meta property="og:description" content="Saiba como o CHAVE gera e analisa senhas no navegador e como esta versão trata publicidade e dados.">
+<title>Política de Privacidade — CHAVE</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body><a class="skip-link" href="#principal">Pular para o conteúdo</a>
+<header class="site-header">
+<a class="brand" href="index.html" aria-label="CHAVE, início"><span class="brand-symbol" aria-hidden="true">✳</span> CHAVE<span class="brand-dot">®</span></a>
+<nav class="main-nav" aria-label="Navegação principal"><a href="index.html#gerador">Gerar</a><a href="ferramentas.html#analisador">Verificar</a><a href="aprenda/index.html">Aprender</a>
+</nav>
+<a class="header-tag" href="ferramentas.html">100% GRATUITO <span aria-hidden="true">↗</span></a>
+</header>
+<main id="principal" class="reading-layout">
+<p class="eyebrow">TRANSPARÊNCIA / PRIVACIDADE</p>
+<h1>Suas senhas ficam<br>no seu navegador.</h1>
+<p class="article-lead">Como esta versão do CHAVE trata os dados ao usar suas ferramentas.</p>
+<div class="article-body">
+<p>Atualizada em 18 de outubro de 2026.</p>
+<h2>Geração e análise local</h2>
+<p>As senhas e frases-senha são geradas no navegador usando a API Web Crypto. A análise de senhas também é executada localmente. O código das ferramentas não envia esses valores a servidores nem os salva em cookies ou no armazenamento local.</p>
+<h2>Consulta opcional de vazamentos</h2>
+<p>Apenas quando você clica em “Verificar vazamentos”, o navegador calcula um hash SHA-1 da senha e envia os primeiros cinco caracteres desse hash à API Pwned Passwords, do Have I Been Pwned. A senha e o hash completo não são enviados. A comparação com a resposta acontece localmente, sem salvar a senha ou o resultado.</p>
+<p>A requisição não inclui cookies nem o endereço da página de origem. Usamos preenchimento da resposta (padding) para reduzir a informação revelada por seu tamanho. O serviço externo e sua infraestrutura recebem o prefixo consultado, seu endereço IP e dados técnicos da conexão. Consulte a <a href="https://haveibeenpwned.com/Privacy" rel="noreferrer">política de privacidade do Have I Been Pwned</a>.</p>
+<p>Não fazemos consultas a cada tecla digitada. Ao editar ou limpar o campo, o resultado anterior é descartado e uma consulta em andamento é cancelada; isso não desfaz uma requisição que já chegou ao serviço externo.</p>
+<h2>Checklist de recuperação</h2>
+<p>As marcações do checklist ficam apenas na página aberta. Elas são descartadas ao editar ou limpar a senha e não são salvas nem enviadas. Marcar uma etapa não executa ações nas suas contas.</p>
+<h2>Área de transferência</h2>
+<p>Ao usar o botão de copiar, a combinação é enviada à área de transferência do seu dispositivo. A retenção, o histórico e a sincronização desse conteúdo dependem das configurações do seu sistema. O CHAVE não controla esses recursos.</p>
+<h2>Publicidade e métricas</h2>
+<p>Esta versão não integra redes de anúncios, ferramentas de analytics ou cookies de rastreamento. Os espaços de publicidade são apenas reservas visuais. A política deverá ser atualizada antes de ativar serviços externos e explicar quais dados eles tratam e quais controles estarão disponíveis.</p>
+<h2>Hospedagem e links externos</h2>
+<p>O provedor que hospedar o site poderá processar dados técnicos de acesso, como endereço IP, horário e páginas solicitadas. Os detalhes dependem do provedor configurado na publicação. Ao acessar uma referência externa, valem as práticas de privacidade daquele site.</p>
+<h2>Contato e atualizações</h2>
+<p>O canal público de contato está em preparação e será informado na <a href="sobre.html#contato">página Sobre</a>. Esta política descreve a implementação atual e deve acompanhar mudanças nas ferramentas e nos serviços integrados.</p>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-top">
+<div><a class="brand footer-logo" href="index.html"><span class="brand-symbol" aria-hidden="true">✳</span> CHAVE<span class="brand-dot">®</span></a>
+<p>Segurança começa com informação.</p>
+</div>
+<p>Ferramentas gratuitas e conteúdos educativos<br>para tornar a proteção digital mais acessível.</p>
+</div>
+<div class="footer-bottom">
+<nav aria-label="Navegação do rodapé"><a href="index.html#gerador">Gerador de senhas</a><a href="aprenda/index.html">Aprenda</a><a href="historias/index.html">Casos reais</a><a href="como-funciona.html">Como funciona</a><a href="sobre.html">Sobre</a><a href="privacidade.html">Política de Privacidade</a><a href="sobre.html#contato">Contato</a>
+</nav><span>© 2026 CHAVE</span>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111111">
+<meta name="description" content="Saiba como o CHAVE gera senhas aleatórias, estima resistência e consulta vazamentos com hash parcial. Conheça a privacidade e os limites das ferramentas.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="CHAVE">
+<meta property="og:title" content="Como funciona o CHAVE: geração, análise e privacidade">
+<meta property="og:description" content="Saiba como o CHAVE gera senhas aleatórias, estima resistência e consulta vazamentos com hash parcial. Conheça a privacidade e os limites das ferramentas.">
+<title>Como funciona o CHAVE: geração, análise e privacidade</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body><a class="skip-link" href="#principal">Pular para o conteúdo</a>
+<header class="site-header">
+<a class="brand" href="index.html" aria-label="CHAVE, início"><span class="brand-symbol" aria-hidden="true">✳</span> CHAVE<span class="brand-dot">®</span></a>
+<nav class="main-nav" aria-label="Navegação principal"><a href="index.html#gerador">Gerar</a><a href="ferramentas.html#analisador">Verificar</a><a href="aprenda/index.html">Aprender</a>
+</nav>
+<a class="header-tag" href="ferramentas.html">100% GRATUITO <span aria-hidden="true">↗</span></a>
+</header>
+<main id="principal" class="reading-layout">
+<nav class="breadcrumbs" aria-label="Caminho da página"><a href="index.html">Início</a><span>/</span><span>Como funciona</span>
+</nav>
+<p class="eyebrow">MÉTODO / TRANSPARÊNCIA</p>
+<h1>Como funcionam as ferramentas do CHAVE?</h1>
+<p class="article-lead">Geração aleatória e estimativas acontecem no navegador. A consulta de vazamentos é opcional e envia apenas um prefixo do hash da senha.</p>
+<nav class="article-toc" aria-label="Nesta página"><a href="#geracao">Geração de senhas</a><a href="#analisador">Estimativa de resistência</a><a href="#vazamentos">Consulta de vazamentos</a><a href="#limites">Privacidade e limites</a><a href="#conteudos">Critérios editoriais</a>
+</nav>
+<div class="article-body">
+<h2 id="geracao">Como as senhas são geradas?</h2>
+<p>O gerador usa <code>crypto.getRandomValues()</code>, a API criptográfica do navegador. Cada posição é sorteada no conjunto de caracteres escolhido. A amostragem por rejeição evita favorecer alguns caracteres ao transformar números aleatórios em posições desse conjunto. <a href="https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues">Referência: documentação da API Web Crypto</a>.</p>
+<p>Selecionar letras, números ou símbolos permite que eles participem do sorteio; não obriga que cada tipo apareça em todas as combinações. Se um serviço exigir um símbolo específico, confira a senha gerada e gere outra quando necessário.</p>
+<h3>O que mudam os atalhos?</h3>
+<ul>
+<li><strong>Uso geral:</strong> 16 caracteres, letras maiúsculas e minúsculas, números e símbolos.</li>
+<li><strong>Sem símbolos:</strong> 20 caracteres, letras e números.</li>
+<li><strong>Mais fácil de digitar:</strong> 20 caracteres, letras e números, excluindo I, l, 1, O, o e 0.</li>
+</ul>
+<p>Todos os controles continuam editáveis. Ao ajustar uma opção, a configuração passa a ser personalizada. Para palavras separadas por hífen, use o <a href="ferramentas.html#frases">gerador de frases-senha</a>: ele sorteia palavras independentemente em uma lista local de 341 entradas, com 10, 12 ou 14 palavras.</p>
+<h2 id="analisador">Como estimamos o tempo para adivinhar uma senha?</h2>
+<p>O <a href="ferramentas.html#analisador">analisador</a> usa uma cópia local do zxcvbn 4.4.2. A biblioteca estima tentativas considerando padrões como palavras frequentes, repetições e sequências. Acrescentamos termos comuns em português, mas isso não torna a cobertura de nomes e expressões completa. <a href="https://github.com/dropbox/zxcvbn">Referência: metodologia do zxcvbn</a>.</p>
+<p>O tempo combina essa estimativa de tentativas com um cenário escolhido: 10 bilhões de tentativas por segundo em um ataque offline com hashes rápidos; 10 mil por segundo com hashes mais lentos; ou 100 por hora em um serviço online que limite tentativas. São hipóteses ilustrativas, não medições do serviço onde você usa a senha.</p>
+<p>A análise aceita até 128 caracteres e identifica o cenário ao lado do resultado. Se a consulta de vazamentos encontrar a combinação, “Já exposta” substitui o tempo: uma senha conhecida pode ser testada diretamente.</p>
+<h2 id="vazamentos">Como verificamos senhas vazadas sem enviar a senha completa?</h2>
+<p>Ao clicar em “Verificar vazamentos”, calculamos um hash SHA-1 da senha no navegador. Somente seus primeiros cinco caracteres são enviados à API Pwned Passwords. Ela retorna sufixos de hashes com o mesmo prefixo; a comparação com o restante do hash acontece localmente. SHA-1 serve aqui para a consulta, não para guardar senhas. <a href="https://haveibeenpwned.com/API/V3#SearchingPwnedPasswordsByRange">Referência: API do Have I Been Pwned</a>.</p>
+<p>A requisição pede uma resposta com preenchimento, não inclui cookies nem o endereço de origem e não ocorre a cada tecla digitada. Editar ou limpar o campo invalida o resultado anterior e cancela a consulta em andamento.</p>
+<p>“Não encontrada” significa apenas que a combinação não apareceu nessa base. O serviço não varre toda a internet nem identifica uma conta ou incidente específico. Falhas de rede são exibidas como consulta indisponível.</p>
+<h2 id="limites">O que fica local e quais são os limites?</h2>
+<p>O CHAVE não grava senhas, resultados ou progresso do checklist em cookies ou no armazenamento do navegador. A consulta externa recebe o prefixo do hash, seu IP e dados técnicos da conexão. Ao copiar uma senha, ela vai para a área de transferência, cujas regras de histórico e sincronização dependem do dispositivo.</p>
+<p>O analisador não verifica phishing, malware, sessões roubadas ou a segurança de uma plataforma. Uma estimativa longa não equivale a uma garantia. Para suspeitas de exposição, siga o <a href="aprenda/o-que-fazer-se-sua-senha-vazou.html">guia de recuperação e proteção das contas</a>. Leia também a <a href="privacidade.html">política de privacidade</a>.</p>
+<h2 id="conteudos">Como produzimos os conteúdos e casos reais?</h2>
+<p>Os casos usam relatos técnicos oficiais e investigações públicas, com links e datas para conferência. Indicamos quando uma informação vem da empresa envolvida e distinguimos o relato de nossas lições práticas. Não inventamos personagens, falas ou detalhes para preencher lacunas.</p>
+<p>Os guias explicam ações gerais; cada serviço pode ter procedimentos próprios. Esta versão não carrega anúncios ou analytics de terceiros. A metodologia e a política precisam acompanhar qualquer mudança nas ferramentas.</p>
+<p class="source-note">Equipe CHAVE · Revisado em <time datetime="2026-10-18">18 de outubro de 2026</time>.</p>
+</div>
+</main>
+<footer class="site-footer">
+<div class="footer-top">
+<div><a class="brand footer-logo" href="index.html"><span class="brand-symbol" aria-hidden="true">✳</span> CHAVE<span class="brand-dot">®</span></a>
+<p>Segurança começa com informação.</p>
+</div>
+<p>Ferramentas gratuitas e conteúdos educativos<br>para tornar a proteção digital mais acessível.</p>
+</div>
+<div class="footer-bottom">
+<nav aria-label="Navegação do rodapé"><a href="index.html#gerador">Gerador de senhas</a><a href="aprenda/index.html">Aprenda</a><a href="historias/index.html">Casos reais</a><a href="como-funciona.html">Como funciona</a><a href="sobre.html">Sobre</a><a href="privacidade.html">Política de Privacidade</a><a href="sobre.html#contato">Contato</a>
+</nav><span>© 2026 CHAVE</span>
+</div>
+</footer>
+
+</body>
+</html>

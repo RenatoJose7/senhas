@@ -13,6 +13,32 @@ const mensagem = document.getElementById("mensagem");
 const copyLabel = document.getElementById("copy-label");
 let copyTimeout;
 
+const presets = {
+    geral: { tamanho: 16, simbolos: true, excluir: false, descricao: "16 caracteres · letras, números e símbolos." },
+    "sem-simbolos": { tamanho: 20, simbolos: false, excluir: false, descricao: "20 caracteres · letras e números, sem símbolos." },
+    digitar: { tamanho: 20, simbolos: false, excluir: true, descricao: "20 caracteres · letras e números, sem símbolos e sem I, l, 1, O, o e 0." },
+};
+function marcarPreset(nome) {
+    document.querySelectorAll("[data-preset]").forEach(botao => {
+        botao.setAttribute("aria-pressed", String(botao.getAttribute("data-preset") === nome));
+    });
+    document.getElementById("preset-description").textContent = presets[nome]?.descricao || "Configuração personalizada. Clique em gerar para aplicar suas escolhas.";
+}
+function aplicarPreset(nome) {
+    if (!Object.hasOwn(presets, nome)) return;
+    const preset = presets[nome];
+    sincronizarTamanho(preset.tamanho);
+    for (const id of ["maiusculas", "minusculas", "numeros"]) document.getElementById(id).checked = true;
+    document.getElementById("simbolos").checked = preset.simbolos;
+    document.getElementById("excluir-semelhantes").checked = preset.excluir;
+    marcarPreset(nome);
+    novaSenha();
+}
+document.querySelectorAll("[data-preset]").forEach(botao => {
+    botao.addEventListener("click", () => aplicarPreset(botao.getAttribute("data-preset")));
+});
+document.getElementById("excluir-semelhantes").addEventListener("change", () => marcarPreset(null));
+
 // Rejeição evita favorecer caracteres quando o intervalo não divide 2³².
 function indiceAleatorio(limite) {
     const valor = new Uint32Array(1);
@@ -21,9 +47,10 @@ function indiceAleatorio(limite) {
     return valor[0] % limite;
 }
 function montarBanco() {
-    return Object.entries(grupos)
+    const banco = Object.entries(grupos)
         .filter(([id]) => document.getElementById(id).checked)
         .map(([, caracteres]) => caracteres).join("");
+    return document.getElementById("excluir-semelhantes").checked ? banco.replace(/[Il1Oo0]/g, "") : banco;
 }
 function gerarSenha(tamanho, banco) {
     return Array.from({ length: tamanho }, () => banco[indiceAleatorio(banco.length)]).join("");
@@ -65,11 +92,12 @@ function novaSenha() {
         mensagem.textContent = "Não foi possível gerar com segurança. Tente em um navegador atualizado.";
     }
 }
-tamanhoRange.addEventListener("input", () => sincronizarTamanho(tamanhoRange.value));
+tamanhoRange.addEventListener("input", () => { sincronizarTamanho(tamanhoRange.value); marcarPreset(null); });
 // Normaliza também os valores digitados diretamente, antes de gerar.
-tamanhoInput.addEventListener("change", () => sincronizarTamanho(tamanhoInput.value));
+tamanhoInput.addEventListener("change", () => { sincronizarTamanho(tamanhoInput.value); marcarPreset(null); });
 Object.keys(grupos).forEach((id) => {
     document.getElementById(id).addEventListener("change", () => {
+        marcarPreset(null);
         mensagem.textContent = montarBanco() ? "" : "Selecione pelo menos um tipo de caractere para gerar.";
     });
 });

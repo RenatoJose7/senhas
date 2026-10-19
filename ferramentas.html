@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111111">
+<meta name="description" content="Gere frases-senha, estime a resistência de uma senha e consulte vazamentos conhecidos. Sem cadastro e sem armazenar suas combinações.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Ferramentas gratuitas: frases-senha e análise — CHAVE">
+<meta property="og:description" content="Gere frases-senha, estime a resistência de uma senha e consulte vazamentos conhecidos. Sem cadastro e sem armazenar suas combinações.">
+<title>Ferramentas gratuitas: frases-senha e análise — CHAVE</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body><a class="skip-link" href="#principal">Pular para o conteúdo</a>
+<header class="site-header">
+<a class="brand" href="index.html" aria-label="CHAVE, início"><span class="brand-symbol" aria-hidden="true">✳</span> CHAVE<span class="brand-dot">®</span></a>
+<nav class="main-nav" aria-label="Navegação principal"><a href="index.html#gerador">Gerar</a><a href="ferramentas.html#analisador">Verificar</a><a href="aprenda/index.html">Aprender</a>
+</nav>
+<a class="header-tag" href="ferramentas.html">100% GRATUITO <span aria-hidden="true">↗</span></a>
+</header>
+<main id="principal" class="page-layout collection-page">
+<p class="eyebrow">UTILITÁRIOS / 100% GRATUITOS</p>
+<h1>Verifique sua senha.<br>Escolha o próximo passo.</h1>
+<p class="article-lead">Crie combinações, entenda sua resistência e consulte vazamentos conhecidos.</p>
+<nav class="tool-nav" aria-label="Escolher ferramenta"><a href="index.html#gerador">Gerador de senhas ↗</a><a href="#frases">Frases-senha ↓</a><a href="#analisador">Analisador ↓</a>
+</nav>
+<section class="utility-panel" id="analisador" aria-labelledby="analyzer-title">
+<p class="eyebrow">FERRAMENTA / 003</p>
+<h2 id="analyzer-title">Analisador de senhas</h2>
+<p>Quanto tempo levaria para adivinhar? Essa combinação já apareceu em vazamentos? Entenda os dois sinais antes de escolher sua senha.</p><label for="senha-analise">Senha para analisar</label>
+<div class="analysis-input"><input type="password" id="senha-analise" autocomplete="off" spellcheck="false" autocapitalize="off" maxlength="128" aria-describedby="analysis-limit"><button id="mostrar-senha" type="button" aria-pressed="false">Mostrar</button>
+</div>
+<p class="input-note">A estimativa é local. Ao verificar vazamentos, apenas um prefixo do hash é enviado ao Have I Been Pwned; a senha completa fica no navegador.</p>
+<div class="analysis-dashboard">
+    <section class="analysis-metric" aria-labelledby="time-heading">
+        <span class="tool-tag">01 / RESISTÊNCIA ESTIMADA</span>
+        <h3 id="time-heading">Tempo para adivinhar</h3>
+        <div role="status" aria-live="polite"><strong class="metric-value" id="tempo-estimado">—</strong>
+<p id="tempo-contexto">Digite uma senha para ver a estimativa.</p>
+</div>
+        <label for="cenario-ataque">Cenário de ataque</label>
+        <select id="cenario-ataque">
+            <option value="offline_fast_hashing_1e10_per_second">Offline · 10 bilhões de tentativas/s</option>
+            <option value="offline_slow_hashing_1e4_per_second">Offline · 10 mil tentativas/s</option>
+            <option value="online_throttling_100_per_hour">Online · 100 tentativas/hora</option>
+        </select>
+    </section>
+    <section class="analysis-metric" aria-labelledby="breach-heading">
+        <span class="tool-tag">02 / VAZAMENTOS CONHECIDOS</span>
+        <h3 id="breach-heading">Essa senha já apareceu?</h3>
+        <div id="vazamento-resultado" role="status" aria-live="polite" aria-busy="false"><strong class="metric-value" id="vazamento-titulo">Não consultada</strong>
+<p id="vazamento-detalhe">Verifique se a combinação aparece na base Pwned Passwords.</p>
+</div>
+        <button class="button" id="verificar-vazamento" type="button" disabled>Verificar vazamentos <span aria-hidden="true">↗</span></button>
+        <p class="breach-credit">Base: <a href="https://haveibeenpwned.com/Passwords" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a>
+</p>
+    </section>
+</div>
+<div class="analysis-result" id="analise-resultado" role="status" aria-live="polite"><strong id="analise-titulo">Digite um exemplo para começar.</strong>
+<ul id="analise-dicas">
+</ul>
+</div>
+<div id="analysis-actions" class="analysis-actions" hidden><a class="button" href="index.html#gerador">Gerar uma alternativa <span aria-hidden="true">↗</span></a><a class="text-link" href="como-funciona.html#analisador">Entender esta análise ↗</a></div>
+<section id="breach-checklist" class="breach-checklist" aria-labelledby="checklist-title" hidden>
+<p class="eyebrow">PRÓXIMOS PASSOS / UMA AÇÃO POR VEZ</p>
+<h3 id="checklist-title">Minha senha apareceu. E agora?</h3>
+<p>Isso não identifica uma conta comprometida. Se você usa esta combinação, siga estes passos pelos canais oficiais dos serviços.</p>
+<div class="checklist-items">
+<label><input type="checkbox" data-recovery-step><span><strong>Trocar onde a senha foi reutilizada.</strong> Crie uma combinação exclusiva para cada conta. Comece pelo e-mail e pelos acessos mais importantes.</span></label>
+<label><input type="checkbox" data-recovery-step><span><strong>Revisar sessões e dispositivos.</strong> Encerre acessos desconhecidos; trocar a senha nem sempre encerra sessões já abertas.</span></label>
+<label><input type="checkbox" data-recovery-step><span><strong>Conferir os dados de recuperação.</strong> Revise telefone, e-mail e aplicativos conectados. Use o suporte oficial se perder o acesso.</span></label>
+<label><input type="checkbox" data-recovery-step><span><strong>Ativar autenticação multifator.</strong> Se disponível, considere uma passkey ou chave de segurança. Guarde os códigos de recuperação em um local seguro.</span></label>
+</div>
+<p id="checklist-progress" class="checklist-progress" role="status">0 de 4 etapas marcadas.</p>
+<p class="small-note">As marcações servem para sua organização e não verificam as contas. O progresso não é salvo.</p>
+<a class="text-link" href="aprenda/o-que-fazer-se-sua-senha-vazou.html">Ver o guia completo de recuperação ↗</a>
+</section>
+<button class="text-button" id="limpar-analise" type="button">Limpar análise ×</button>
+<details class="analysis-explainer">
+<summary>Como interpretar os resultados <span aria-hidden="true">+</span>
+</summary>
+<p id="analysis-limit">O tempo é uma estimativa do zxcvbn, baseada em padrões e em taxas hipotéticas de tentativas. Não é uma previsão de invasão. Ataques offline usam dados roubados e não passam pela tela de login; sua velocidade depende do armazenamento da senha e do equipamento. A estimativa não mede phishing, malware ou reutilização.</p>
+<p>A consulta verifica uma base de vazamentos conhecidos, não toda a internet. “Não encontrada” não garante segurança e uma ocorrência não identifica qual conta foi comprometida.</p>
+<p>Somente ao clicar, calculamos um hash SHA-1 localmente e enviamos seus primeiros cinco caracteres à API do Have I Been Pwned. A senha e o hash completo não são enviados. A comparação final acontece aqui. O serviço externo recebe seu IP e dados técnicos da conexão. <a href="privacidade.html">Saiba mais sobre privacidade</a>.</p>
+<p><a href="como-funciona.html">Leia a explicação completa de como o CHAVE funciona</a>.</p>
+<p>Metodologia: <a href="https://github.com/dropbox/zxcvbn" target="_blank" rel="noopener noreferrer">zxcvbn</a> e <a href="https://haveibeenpwned.com/API/V3#SearchingPwnedPasswordsByRange" target="_blank" rel="noopener noreferrer">Pwned Passwords</a>.</p>
+</details>
+</section>
+<section class="utility-panel" id="frases" aria-labelledby="phrase-title">
+<p class="eyebrow">FERRAMENTA / 002</p>
+<h2 id="phrase-title">Gerador de frases-senha</h2>
+<p>Palavras sorteadas de forma independente formam uma combinação longa. Não substitua as palavras por uma frase conhecida.</p><label for="palavras">Quantidade de palavras</label><select id="palavras"><option value="10">10 palavras</option><option value="12" selected>12 palavras</option><option value="14">14 palavras</option></select>
+<div class="phrase-result"><output id="frase-resultado" aria-label="Frase-senha gerada" aria-live="polite"></output>
+</div>
+<div class="utility-actions"><button class="button" id="gerar-frase" type="button">Gerar nova frase ↻</button><button class="button outline-button" id="copiar-frase" type="button" disabled>Copiar frase</button>
+</div>
+<p id="frase-feedback" role="status">
+</p>
+<p class="small-note" id="phrase-entropy">
+</p>
+<p class="small-note">A lista desta versão é compacta, por isso usamos mais palavras. Confira se o serviço aceita o comprimento gerado. Use uma frase diferente por conta.</p>
+</section>
+<noscript>
+<p class="noscript">Ative o JavaScript para usar estas ferramentas.</p>
+</noscript>
+</main>
+<footer class="site-footer">
+<div class="footer-top">
+<div><a class="brand footer-logo" href="index.html"><span class="brand-symbol" aria-hidden="true">✳</span> CHAVE<span class="brand-dot">®</span></a>
+<p>Segurança começa com informação.</p>
+</div>
+<p>Ferramentas gratuitas e conteúdos educativos<br>para tornar a proteção digital mais acessível.</p>
+</div>
+<div class="footer-bottom">
+<nav aria-label="Navegação do rodapé"><a href="index.html#gerador">Gerador de senhas</a><a href="aprenda/index.html">Aprenda</a><a href="historias/index.html">Casos reais</a><a href="como-funciona.html">Como funciona</a><a href="sobre.html">Sobre</a><a href="privacidade.html">Política de Privacidade</a><a href="sobre.html#contato">Contato</a>
+</nav><span>© 2026 CHAVE</span>
+</div>
+</footer>
+<script src="vendor/zxcvbn/zxcvbn.js">
+</script>
+<script src="tools.js">
+</script>
+</body>
+</html>
